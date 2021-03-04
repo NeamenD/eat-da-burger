@@ -1,0 +1,21 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(251, 255, 22);
+  text-align: center;
+  padding: 5px;
+}
+
+#header {
+  font-family: "Sigmar One", cursive;
+  font-size: 60px;
+  color: #ff0000;
+  padding: 10px;
+  text-align: center;
+  background-color: #1f1e1da9;
+}
+#card-body {
+  background-color: #ff060600;
+}
+#card-header {
+  background-color: #080808a9;
+}

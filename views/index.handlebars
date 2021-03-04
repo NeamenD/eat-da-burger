@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <!-- HEADER -->
+    <div id="header" class="jumbotron">
+        <h1 id="header" class="text-center title">Eat-Da-Burger!</h1>
+
+    </div><!-- Jumbotron -->
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <!-- photo credit to Amirali Mirhashemian, original photo link here https://unsplash.com/photos/sc5sTPMrVfk -->
+            <img src="\images\burger.jpg" alt="Burger" id="burger-img" class="img-fluid">
+        </div>
+    </div>
+    <!-- ADD A NEW BURGER -->
+    <div class="row">
+        <div class="col">
+            <div class="card my-3">
+                <div id="card-header" class="card-header">
+                    <h2 class="card-title text-center">Add a New Burger!</h2>
+                </div>
+
+                <div id="card-body" class="card-body">
+                    <div class="text-center">
+                        <form action="/api/burgers" method="POST">
+                            <input type="text" id="name" name="burger_name" placeholder="Enter Burger Name">
+                            <button type="submit">Add Burger</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BURGERS AVAILABLE TO EAT -->
+        <div class="col">
+            <div class="card my-3">
+                <div id="card-header" class="card-header">
+                    <h2 class="card-title text-center">Burgers Available to Eat</h2>
+                </div>
+                <div id="card-body" class="card-body text-center">
+
+                    {{#each burgers}}
+                    {{#unless this.devoured}}
+
+
+                    <form action="/api/burgers/{{this.id}}?_method=PUT" method="POST" class="mb-1">
+                        {{this.burger_name}}
+                        <button type="submit" class="btn btn-danger">Devour</button>
+                    </form>
+
+
+                    {{/unless}}
+                    {{/each}}
+
+                </div>
+            </div>
+        </div><!-- col -->
+
+        <!-- DEVOURED BURGERS -->
+        <div class="col">
+            <div class="card my-3">
+                <div id="card-header" class="card-header">
+                    <h2 class="card-title text-center">Burgers Devoured</h2>
+                </div>
+                <div id="card-body" class="card-body text-center">
+                    {{#each burgers}}
+                    {{#if devoured}}
+                    <ul class="list-unstyled">
+                        <li>
+                            <form action="/api/burgers/{{this.id}}?_method=DELETE" method="POST" class="mb-1">
+                                {{this.burger_name}}
+                                <button type="submit" class="btn btn-dark">Delete</button>
+                            </form>
+                        </li>
+                    </ul>
+
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
